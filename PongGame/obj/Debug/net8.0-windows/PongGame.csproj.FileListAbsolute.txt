@@ -16,3 +16,5 @@ D:\CODE\Dotnet\Make Game\PongGame\PongGame\obj\Debug\net8.0-windows\refint\PongG
 D:\CODE\Dotnet\Make Game\PongGame\PongGame\obj\Debug\net8.0-windows\PongGame.pdb
 D:\CODE\Dotnet\Make Game\PongGame\PongGame\obj\Debug\net8.0-windows\PongGame.genruntimeconfig.cache
 D:\CODE\Dotnet\Make Game\PongGame\PongGame\obj\Debug\net8.0-windows\ref\PongGame.dll
+D:\CODE\Dotnet\Make Game\PongGame\PongGame\obj\Debug\net8.0-windows\Interop.WMPLib.dll
+D:\CODE\Dotnet\Make Game\PongGame\PongGame\obj\Debug\net8.0-windows\PongGame.csproj.ResolveComReference.cache

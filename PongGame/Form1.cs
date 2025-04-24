@@ -1,3 +1,5 @@
+using WMPLib;
+
 namespace PongGame
 {
     public partial class Form1 : Form
@@ -14,13 +16,35 @@ namespace PongGame
         int[] i = {5, 6, 8, 9};
         int[] j = { 10, 9, 8, 11, 12};
 
+        WindowsMediaPlayer pongMedia;
+        WindowsMediaPlayer winMedia;
+        WindowsMediaPlayer loseMedia;
+
+
         public Form1()
         {
             InitializeComponent();
+
+            pongMedia = new WindowsMediaPlayer();
+            winMedia = new WindowsMediaPlayer();
+            loseMedia = new WindowsMediaPlayer();
+
+            pongMedia.URL = "songs\\PongSound.mp3";
+            winMedia.URL = "songs\\WinSound.mp3";
+            winMedia.controls.stop();
+            loseMedia.URL = "songs\\LoseSound.mp3";
+            loseMedia.controls.stop();
+
+            pongMedia.settings.volume = 8;
+            winMedia.settings.volume = 10;
+            loseMedia.settings.volume = 10;
+
+            loseMedia.controls.stop();
         }
 
         private void GameTimerEvent(object sender, EventArgs e)
         {
+
             Ball.Top -= ballYspeed;
             Ball.Left -= ballXspeed;
 
@@ -99,11 +123,11 @@ namespace PongGame
             CheckCollision(Ball, Computer, Computer.Left - Ball.Width);
 
 
-            if (computerScore > 5)
+            if (computerScore > 1)
             {
                 GameOver("Sorry you are lose");
             }
-            else if (playerScore > 5)
+            else if (playerScore > 1)
             {
                 GameOver("You win the game");
             }
@@ -140,6 +164,7 @@ namespace PongGame
             if (PicOne.Bounds.IntersectsWith(PicTwo.Bounds))
             {
                 PicOne.Left = offset;
+                pongMedia.controls.play();
                 int x = j[rnd.Next(j.Length)];
                 int y = j[rnd.Next(j.Length)];
 
@@ -166,6 +191,16 @@ namespace PongGame
         private void GameOver(string message)
         {
             GameTimer.Stop();
+            if (message.Contains("win"))
+            {
+                winMedia.controls.stop();
+                winMedia.controls.play();
+            }
+            else
+            {
+                loseMedia.controls.stop();
+                loseMedia.controls.play();
+            }
             MessageBox.Show(message,"Game Over");
             computerScore = 0;
             playerScore = 0;
